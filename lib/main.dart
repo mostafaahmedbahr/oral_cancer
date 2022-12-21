@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +12,7 @@ import 'layouts/on_boarding/on_boarding_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
   await CacheHelper.init();
   Widget startWidget;
 
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
             primaryColor: primaryColor,
             primarySwatch: primaryColor,
           ),
-          home: HomeLayoutScreen(),
+          home: OnBoardingScreen(),
         ));
       },
     );

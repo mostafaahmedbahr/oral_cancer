@@ -3,10 +3,13 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oral_cancer/view/auth/login/login_screen.dart';
 import 'package:oral_cancer/view/auth/sign_up/sign_up_cubit.dart';
 import 'package:oral_cancer/view/auth/sign_up/sign_up_states.dart';
+import 'package:oral_cancer/view/home/home_screen.dart';
 
 import '../../../components/constants/constants.dart';
+import '../../../layouts/home_layout/home_layout_screen.dart';
 import '../../../widgets/camera_widget.dart';
 
 
@@ -15,16 +18,17 @@ class OralSignUpScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    var nameCon = TextEditingController();
-    var emailCon = TextEditingController();
-    var passCon = TextEditingController();
-    var phoneCon = TextEditingController();
-    var addressCon = TextEditingController();
-
     return BlocProvider(
       create: (BuildContext context) => OralSignUpCubit(),
       child: BlocConsumer<OralSignUpCubit,OralSignUpStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if(state is OralSignUpSuccessState){
+            Navigator.push(context,
+              MaterialPageRoute(
+                builder: (context)=>const HomeLayoutScreen(),),
+            );
+          }
+        },
         builder: (context, state) {
           var cubit = OralSignUpCubit.get(context);
           return SafeArea(
@@ -93,7 +97,7 @@ class OralSignUpScreen extends StatelessWidget {
                             style: const TextStyle(
                               color: Colors.black,
                             ),
-                            controller: emailCon,
+                            controller: cubit.nameCon,
                             validator: (value)
                             {
                               if(value!.isEmpty)
@@ -101,14 +105,14 @@ class OralSignUpScreen extends StatelessWidget {
                                 return "name must not be empty ..";
                               }
                             },
-                            decoration: const InputDecoration(
-                              border:OutlineInputBorder(),
-                              enabledBorder:  OutlineInputBorder(
-                                  borderSide: BorderSide(
+                            decoration:  InputDecoration(
+                              border:const OutlineInputBorder(),
+                              enabledBorder: const OutlineInputBorder(
+                                  borderSide:  BorderSide(
                                     color: thirdColor,
                                   )
                               ),
-                              focusedBorder:   OutlineInputBorder(
+                              focusedBorder: const  OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.black,
                                   )
@@ -116,8 +120,9 @@ class OralSignUpScreen extends StatelessWidget {
                               hintText: "Name",
                               hintStyle: TextStyle(
                                 color: Colors.black,
+                                fontSize: 14.sp,
                               ),
-                              prefixIcon: Icon(Icons.person,
+                              prefixIcon:const Icon(Icons.person,
                                 color: Colors.black,
                               ),
                             ),
@@ -130,7 +135,7 @@ class OralSignUpScreen extends StatelessWidget {
                             style: const TextStyle(
                               color: Colors.black,
                             ),
-                            controller: emailCon,
+                            controller: cubit.phoneCon,
                             validator: (value)
                             {
                               if(value!.isEmpty)
@@ -138,23 +143,24 @@ class OralSignUpScreen extends StatelessWidget {
                                 return "phone must not be empty ..";
                               }
                             },
-                            decoration: const InputDecoration(
-                              border:OutlineInputBorder(),
-                              enabledBorder:  OutlineInputBorder(
+                            decoration:  InputDecoration(
+                              border:const OutlineInputBorder(),
+                              enabledBorder:const  OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: thirdColor,
                                   )
                               ),
-                              focusedBorder:   OutlineInputBorder(
+                              focusedBorder:const   OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.black,
                                   )
                               ),
                               hintText: "phone",
                               hintStyle: TextStyle(
+                                fontSize: 14.sp,
                                 color: Colors.black,
                               ),
-                              prefixIcon: Icon(Icons.phone,
+                              prefixIcon:const Icon(Icons.phone,
                                 color: Colors.black,
                               ),
                             ),
@@ -167,7 +173,7 @@ class OralSignUpScreen extends StatelessWidget {
                             style: const TextStyle(
                               color: Colors.black,
                             ),
-                            controller: emailCon,
+                            controller: cubit.addressCon,
                             validator: (value)
                             {
                               if(value!.isEmpty)
@@ -175,14 +181,14 @@ class OralSignUpScreen extends StatelessWidget {
                                 return "address must not be empty ..";
                               }
                             },
-                            decoration: const InputDecoration(
-                              border:OutlineInputBorder(),
-                              enabledBorder:  OutlineInputBorder(
+                            decoration:  InputDecoration(
+                              border:const OutlineInputBorder(),
+                              enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: thirdColor,
                                   )
                               ),
-                              focusedBorder:   OutlineInputBorder(
+                              focusedBorder: const  OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.black,
                                   )
@@ -190,8 +196,9 @@ class OralSignUpScreen extends StatelessWidget {
                               hintText: "Address",
                               hintStyle: TextStyle(
                                 color: Colors.black,
+                                fontSize: 14.sp,
                               ),
-                              prefixIcon: Icon(Icons.home_outlined,
+                              prefixIcon:const Icon(Icons.home_outlined,
                                 color: Colors.black,
                               ),
                             ),
@@ -204,7 +211,7 @@ class OralSignUpScreen extends StatelessWidget {
                             style: const TextStyle(
                               color: Colors.black,
                             ),
-                            controller: emailCon,
+                            controller: cubit.emailCon,
                             validator: (value)
                             {
                               if(value!.isEmpty)
@@ -212,23 +219,25 @@ class OralSignUpScreen extends StatelessWidget {
                                 return "email is not vaild";
                               }
                             },
-                            decoration: const InputDecoration(
-                              border:OutlineInputBorder(),
-                              enabledBorder:  OutlineInputBorder(
+                            decoration:  InputDecoration(
+                              border:const OutlineInputBorder(),
+                              enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: thirdColor,
                                   )
                               ),
-                              focusedBorder:   OutlineInputBorder(
-                                  borderSide: BorderSide(
+                              focusedBorder: const  OutlineInputBorder(
+                                  borderSide:  BorderSide(
                                     color: Colors.black,
                                   )
                               ),
                               hintText: "E-Mail",
                               hintStyle: TextStyle(
                                 color: Colors.black,
+                                fontSize: 14.sp,
+
                               ),
-                              prefixIcon: Icon(Icons.email,
+                              prefixIcon:const Icon(Icons.email,
                                 color: Colors.black,
                               ),
                             ),
@@ -246,7 +255,7 @@ class OralSignUpScreen extends StatelessWidget {
 
                             },
                             obscureText: cubit.isVisible,
-                            controller: passCon,
+                            controller: cubit.passCon,
                             validator: (value){
                               if(value!.isEmpty)
                               {
@@ -266,8 +275,9 @@ class OralSignUpScreen extends StatelessWidget {
                                   )
                               ),
                               hintText: "Password",
-                              hintStyle: const TextStyle(
+                              hintStyle:   TextStyle(
                                 color: Colors.black,
+                                fontSize: 14.sp,
                               ),
                               prefixIcon:const Icon(Icons.lock,
                                 color: Colors.black,
@@ -294,11 +304,16 @@ class OralSignUpScreen extends StatelessWidget {
                                   primary: thirdColor,
                                 ),
                                 onPressed: (){
-
+                                  cubit.register(
+                                    name:  cubit.nameCon.text,
+                                    email: cubit.emailCon.text,
+                                    phone: cubit.phoneCon.text,
+                                    password: cubit.passCon.text,
+                                  );
                                 },
                                 child:   Text("Sign Up",
                                   style: TextStyle(
-                                    fontSize: 30.sp,
+                                    fontSize: 25.sp,
                                     color: Colors.white,
                                   ),),
                               ),
@@ -319,15 +334,16 @@ class OralSignUpScreen extends StatelessWidget {
                                 ),),
                               TextButton(
                                 onPressed: (){
-                                  // Navigator.push(context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context)=>RegisterScreen(),),);
+                                  Navigator.pushReplacement(context,
+                                    MaterialPageRoute(
+                                      builder: (context)=>OralLoginScreen(),),
+                                  );
                                 },
                                 child:  Text("Login",
                                   style: TextStyle(
                                     color: thirdColor,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 30.sp,
+                                    fontSize: 25.sp,
                                   ),),
                               ),
                             ],

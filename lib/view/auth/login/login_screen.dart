@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../components/constants/constants.dart';
+import '../../../layouts/home_layout/home_layout_screen.dart';
 import '../sign_up/sign_up_screen.dart';
 import 'login_cubit.dart';
 import 'login_states.dart';
@@ -12,15 +13,21 @@ import 'login_states.dart';
 
 class OralLoginScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
+
+  OralLoginScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var emailCon = TextEditingController();
-    var passCon = TextEditingController();
-
     return BlocProvider(
       create: (BuildContext context) => OralLoginCubit(),
       child: BlocConsumer<OralLoginCubit,OralLoginStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if(state is OralLoginSuccessState)
+          {
+            Navigator.push(context,
+              MaterialPageRoute(
+                builder: (context)=>HomeLayoutScreen(),),);
+          }
+        },
         builder: (context, state) {
           var cubit = OralLoginCubit.get(context);
           return Scaffold(
@@ -36,7 +43,7 @@ class OralLoginScreen extends StatelessWidget {
                         Image.asset("assets/images/oral1.png"),
                           Text("Oral Cancer",
                           style: TextStyle(
-                            fontSize: 40.sp,
+                            fontSize: 30.sp,
                             color: thirdColor,
                             fontWeight: FontWeight.bold,
                           ),),
@@ -48,7 +55,7 @@ class OralLoginScreen extends StatelessWidget {
                           style: const TextStyle(
                             color: Colors.black,
                           ),
-                          controller: emailCon,
+                          controller: cubit.emailCon,
                           validator: (value)
                           {
                             if(value!.isEmpty)
@@ -56,23 +63,24 @@ class OralLoginScreen extends StatelessWidget {
                               return "email is not vaild";
                             }
                           },
-                          decoration: const InputDecoration(
-                            border:OutlineInputBorder(),
-                            enabledBorder:  OutlineInputBorder(
+                          decoration:   InputDecoration(
+                            border:const OutlineInputBorder(),
+                            enabledBorder:const  OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: thirdColor,
                                 )
                             ),
-                            focusedBorder:   OutlineInputBorder(
+                            focusedBorder: const  OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Colors.black,
                                 )
                             ),
                             hintText: "E-Mail",
                             hintStyle: TextStyle(
+                              fontSize: 14.sp,
                               color: Colors.black,
                             ),
-                            prefixIcon: Icon(Icons.email,
+                            prefixIcon:const Icon(Icons.email,
                               color: Colors.black,
                             ),
                           ),
@@ -87,10 +95,9 @@ class OralLoginScreen extends StatelessWidget {
                           onFieldSubmitted: (value)
                           {
 
-
                           },
                           obscureText: cubit.isVisible,
-                          controller: passCon,
+                          controller: cubit.passCon,
                           validator: (value){
                             if(value!.isEmpty)
                             {
@@ -110,7 +117,8 @@ class OralLoginScreen extends StatelessWidget {
                                 )
                             ),
                             hintText: "Password",
-                            hintStyle: const TextStyle(
+                            hintStyle:   TextStyle(
+                              fontSize: 14.sp,
                               color: Colors.black,
                             ),
                             prefixIcon:const Icon(Icons.lock,
@@ -138,11 +146,13 @@ class OralLoginScreen extends StatelessWidget {
                                 primary: thirdColor,
                               ),
                               onPressed: (){
-
+                                cubit.login(email: cubit.emailCon.text,
+                                    password: cubit.passCon.text,
+                                );
                               },
                               child:   Text("LoGin",
                                 style: TextStyle(
-                                  fontSize: 30.sp,
+                                  fontSize: 25.sp,
                                   color: Colors.white,
                                 ),),
                             ),
@@ -171,7 +181,7 @@ class OralLoginScreen extends StatelessWidget {
                                 style: TextStyle(
                                   color: thirdColor,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 30.sp,
+                                  fontSize: 25.sp,
                                 ),),
                             ),
                           ],

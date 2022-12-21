@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oral_cancer/bloc/cubit.dart';
 
+import '../../../layouts/home_layout/home_layout_screen.dart';
 import 'drawer_items.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -14,7 +16,7 @@ class CustomDrawer extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.all(20.w),
-            height: 180.h,
+            height: 200.h,
             width: double.infinity,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -53,25 +55,31 @@ class CustomDrawer extends StatelessWidget {
                 icon: Icons.home_outlined,
                 title: "Home",
                 onTap: () {
-
+                  Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context)=>HomeLayoutScreen(),),);
                 },
               ),
               const Divider(),
               DrawerItems(
                 icon: Icons.notifications_none,
-
                 title: "Notifications",
                 onTap: () {
-
+                  AppCubit.get(context).currentIndex=1;
+                  Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context)=>HomeLayoutScreen(),),);
                 },
               ),
               const Divider(),
               DrawerItems(
                 icon: Icons.person_outline,
-
                 title: "Profile",
                 onTap: () {
-
+                  AppCubit.get(context).currentIndex=2;
+                  Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context)=>HomeLayoutScreen(),),);
                 },
               ),
               const Divider(),

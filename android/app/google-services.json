@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "266317809591",
+    "project_id": "oral-cancer-a0bab",
+    "storage_bucket": "oral-cancer-a0bab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266317809591:android:46e0ffc7d0e2fe83b44a32",
+        "android_client_info": {
+          "package_name": "com.example.oral_cancer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266317809591-om8r3riu0pg0pgt1bv080ttmn981100d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.oral_cancer",
+            "certificate_hash": "3df31f7e2111cc2bfef1eef050386d716d9fc08f"
+          }
+        },
+        {
+          "client_id": "266317809591-aeq96enj7jfgvpbsapftkhbtj2nc6866.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApE-QHCl2KJIkLqfNZjKwKWAJJ5WMh3w8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266317809591-aeq96enj7jfgvpbsapftkhbtj2nc6866.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
