@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
             primaryColor: primaryColor,
             primarySwatch: primaryColor,
           ),
-          home: OnBoardingScreen(),
+          home: const OnBoardingScreen(),
         ));
       },
     );

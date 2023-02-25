@@ -6,6 +6,7 @@ import 'package:oral_cancer/bloc/cubit.dart';
 import 'package:oral_cancer/bloc/states.dart';
 import 'package:oral_cancer/view/home/components/carousel_item.dart';
 import 'package:oral_cancer/view/home/components/service_item.dart';
+import 'package:oral_cancer/view/types/types_screen.dart';
 
 import '../../widgets/camera_widget.dart';
 
@@ -65,7 +66,12 @@ class HomeScreen extends StatelessWidget {
                   description:
                       "Read about oral cancer Categories and increase your knowledge",
                   image: "assets/images/5523045-removebg-preview.png",
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)
+                    {
+                      return TypesScreen();
+                    }));
+                  },
                 ),
                 SizedBox(
                   height: 15.h,

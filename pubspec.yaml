@@ -45,6 +45,9 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   firebase_auth: ^4.2.1
   firebase_core: ^2.4.0
+  expansion_tile_card: ^2.0.0
+  readmore: ^2.1.0
+  webview_flutter: ^3.0.4
 
 
 dev_dependencies:
